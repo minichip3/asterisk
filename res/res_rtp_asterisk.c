@@ -4366,6 +4366,8 @@ static int ast_rtp_dtmf_begin(struct ast_rtp_instance *instance, char digit)
 		digit = digit - 'A' + 12;
 	} else if ((digit >= 'a') && (digit <= 'd')) {
 		digit = digit - 'a' + 12;
+	} else if ((digit == 'F') || (digit == 'f')) {
+	digit = 16;
 	} else {
 		ast_log(LOG_WARNING, "Don't know how to represent '%c'\n", digit);
 		return -1;
@@ -4524,6 +4526,8 @@ static int ast_rtp_dtmf_end_with_duration(struct ast_rtp_instance *instance, cha
 		digit = digit - 'A' + 12;
 	} else if ((digit >= 'a') && (digit <= 'd')) {
 		digit = digit - 'a' + 12;
+        } else if ((digit == 'F') || (digit == 'f')) {
+                digit = 16;
 	} else {
 		ast_log(LOG_WARNING, "Don't know how to represent '%c'\n", digit);
 		goto cleanup;
